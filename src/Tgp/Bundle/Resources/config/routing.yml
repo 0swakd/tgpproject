@@ -1,0 +1,5 @@
+tgp_homepage:
+    path:     /tgp/index
+    defaults: { _controller: TgpBundle:Default:index }
+#    path:     /hello/{name}
+#    defaults: { _controller: TgpBundle:Default:index }
