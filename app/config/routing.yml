@@ -1,0 +1,2 @@
+tgp:
+    resource: "@TgpBundle/Resources/config/routing.yml"
