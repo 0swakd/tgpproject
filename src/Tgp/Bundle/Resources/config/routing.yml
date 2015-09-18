@@ -1,5 +1,15 @@
 tgp_homepage:
     path:     /tgp/index
     defaults: { _controller: TgpBundle:Default:index }
+
+tgp_homepagei_test:
+    path:     /tgp/index/test
+    defaults: { _controller: TgpBundle:Default:test }
+
+
+#tgp_connection:
+#    path:     /tgp/connection
+#    defaults: { _controller: TgpBundle:Default:connection }
+
 #    path:     /hello/{name}
 #    defaults: { _controller: TgpBundle:Default:index }

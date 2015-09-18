@@ -1,2 +1,22 @@
+tgp_map:
+    resource: "@TgpMapBundle/Resources/config/routing.yml"
+    prefix:   /
+
+tgp_user:
+    resource: "@TgpUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+#acme_user:
+#    resource: "@AcmeUserBundle/Resources/config/routing.yml"
+#    prefix:   /
+
 tgp:
     resource: "@TgpBundle/Resources/config/routing.yml"
+
+# app/config/routing.yml
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+tgp_default:
+    path: /
+    defaults: { _controller: TgpBundle:Default:index }

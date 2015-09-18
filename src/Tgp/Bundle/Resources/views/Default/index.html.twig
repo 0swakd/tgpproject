@@ -1,15 +1,116 @@
-<!doctype html>
-<html>
-<head>
-<title>The Good Plan</title>
-</head>
-<p>
-Welcome to TGP !
-</p>
-<p>
-Here is variable  {{ variable }}
-</p>
-<p>
-Here is some static stuff
-</p>
-</html>
+{% extends 'TgpBundle::core.html.twig' %}
+
+{% block title %}TheGoodPlan - Les bons plans, c'est ici{% endblock %}
+
+{% block metadescription %}TheGoodPlan, partagez vos bons plans entre amis.{% endblock %}
+
+{% block meta %}
+    {{parent()}}
+<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+{% endblock %}
+{% block js %}
+    {{parent()}}
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="{{asset('bundles/tgp/js/map.js')}}"></script>
+{% endblock %}
+
+{% block css %}
+    {{parent()}}
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+{% endblock %}
+{% block menu %}
+        <div id="menu">
+            <p id="menu_title">Menu [Réduire]</p>
+            <ul id="menu_list">
+                <li>
+                    <p id="seek_title">Recherche</p>
+                    <div id="seek_box" class="content_li">
+                        <form id="seek_friend" onsubmit="seek_friend_action(); return false;" name="friend_form">
+                            <input id="seek_friend_input" type="text" value="" class="form_text" autocomplete="off" placeholder="Nom ou Mail"/>
+                            <input type="submit" value="Go" class="form_submit"/>
+                        </form>
+                         <div id="seek_running" style="display:none">
+                             Request running
+                         </div>
+                         <div id="seek_error" style="display:none">
+                             Error : <span id="seek_error_msg"></span>
+                         </div>
+                         <div id="seek_result" style="display:none">
+                             <div>Recherche : <span id="seek_search"></span></div>
+                             <div>Name : <span id="seek_name"></span></div>
+                             <div>Mail : <span id="seek_mail"></span></div>
+                             <div><a class="" href="javascript:void(0);" onclick="add_friend(); return;">Ajouter</a></div>
+                         </div>
+                    </div>
+                </li>
+ <li>
+    <p>Geolocalisation</p>
+    <p>><a href="javascript:void(0)" onclick="map_center()">[+++]</a>< Centrer sur moi</p>
+    <p><a href="javascript:void(0)" onclick="map_follow()">Me suivre</a></p>
+    <p><a href="javascript:void(0)" onclick="map_stop_follow()">Arreter de suivre</a></p>
+</li>
+               <li>
+                    <p id="friends_title">Contacts</p>
+                    <div id="friends_list" class="content_li">
+                       <div id="fl_running" style="display:none">
+                            Request running
+                        </div>
+                        <div id="fl_error" style="display:none">
+                            Error : <span id="fl_error_msg"></span>
+                        </div>
+                        <div id="fl_result" style="display:none">
+                            <ul id="friend_list">
+                                <li id="fl_matrice" class="default_li">
+                                    <p style="margin:0.3em"><a href="javascript:void(0);" onclick="rem_friend(event); return;">X</a> <span>...</span></p>
+                                    <p style="display:none;margin:0">Ses adresses</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul id="fl_pl" style="display_none">
+                            <li class="default_li" style="display:none"><span>...</span><span style="display:none"></span><span style="display:none"></span></li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <p id="places_title">Mes Adresses</p>
+                    <div id="places_list" class="content_li">
+                        <div id="al_running" style="display:none">
+                            Request running
+                        </div>
+                        <div id="al_error" style="display:none">
+                            Error : <span id="al_error_msg"></span>
+                        </div>
+                        <div id="al_result" style="display:none">
+                            <ul id="address_list">
+                                <li id="al_matrice" class="default_li"><a href="javascript:void(0);" onclick="rem_place(event); return;">X</a> <span>...</span><span style="display:none"></span><span style="display:none"></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+       <script>
+            update_menu();
+        </script>
+{% endblock %}
+{% block page %}
+    <div id="map"></div> 
+    <div id="pinme" class="pinpopup" style="display:none">
+        <form id="pin_ask" onsubmit="pined_place_action(); return false;" name="ask_pined_place">
+            <p>Marquer ce point :</p>
+            <div>
+                <input id="mark_place_input" type="text" value="" class="form_text" aytocomplete="off" placeholder="Nom"/>
+            </div>
+            <p>A enregistrer : </p>
+            <div>
+                <label><input type="radio" name="reg_my_place" class="pin_radioopt" value="my_adress">Mes adresses</label>
+            </div>
+<!--            <div>
+                <label><input type="radio" name="reg_my_place" class="pin_radioopt" value="share_one">Avec quelqu'un</label>
+            </div>-->
+            <div>
+                <input type="submit" value="Go" class="pin_submit"/>
+            </div>
+        </form>
+    </div>
+{% endblock %}
