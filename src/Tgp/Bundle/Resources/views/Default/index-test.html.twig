@@ -1,0 +1,70 @@
+{% extends 'TgpBundle::core-2.html.twig' %}
+
+{% block title %}TheGoodPlan - Les bons plans, c'est ici{% endblock %}
+
+{% block metadescription %}TheGoodPlan, partagez vos bons plans entre amis.{% endblock %}
+
+{% block meta %}
+    {{parent()}}
+<meta name="viewport" content="initial-scale=1.0, width=device-width" />
+{% endblock %}
+{% block js %}
+    {{parent()}}
+<!--    <script src="{{asset('bundles/tgp/js/leaflet.js')}}"></script>-->
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="{{asset('bundles/tgp/js/locations.js')}}"></script>
+    <script src="{{asset('bundles/tgp/js/contacts.js')}}"></script>
+    <script src="{{asset('bundles/tgp/js/index.js')}}"></script>
+{% endblock %}
+
+{% block css %}
+<!--    <link rel="stylesheet" type="text/css" href="{{asset('bundles/tgp/css/leaflet.css')}}" />-->
+    <link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    {{parent()}}
+{% endblock %}
+{% block page %}
+    <div id="page" ng-app="app">
+        {% block menu %}
+        <div id="menu">
+            <p>Menu</p>
+            <div>
+                <p>Recherche</p>
+                    <input type="text" value="" class="form_text" autocomplete="off" placeholder="Nom ou Mail"/>
+                    <input type="submit" value="Go" class="form_submit"/>
+            </div>
+            <div  ng-controller="ContactsController as contacts">
+                <p>Contacts</p>
+                <ul>
+                    <li id="contacts-[[contact.id]]-[[contact.name]]" ng-repeat="contact in contacts.list">x [[ contact.name ]]</li>
+                </ul>
+            </div>
+            <div ng-controller="LocationsController as locations">
+                <p>Locations</p>
+                <ul>
+                    <li id="locations-[[location.lat]]-[[location.lng]]-[[location.name]]" ng-repeat="location in locations.list">x [[ location.name ]]</li>
+                    <!--<script>addevent(window, 'load', function() {pin_place([[location.name]], [[location.lat]], [[location.lng]]);});</script>-->
+                </ul>
+            </div>
+
+        </div>
+        {% endblock %}
+        {% block map %}
+        <div id="map"></div> 
+        <div id="pinme" class="pinpopup" style="display:none">
+            <form id="pin_ask" onsubmit="pined_place_action(); return false;" name="ask_pined_place">
+                <p>Marquer ce point :</p>
+                <div>
+                    <input id="mark_place_input" type="text" value="" class="form_text" aytocomplete="off" placeholder="Nom"/>
+                </div>
+                <p>A enregistrer : </p>
+                <div>
+                    <label><input type="radio" name="reg_my_place" class="pin_radioopt" value="my_adress">Mes adresses</label>
+                </div>
+                <div>
+                    <input type="submit" value="Go" class="pin_submit"/>
+                </div>
+            </form>
+        </div>
+        {% endblock %}
+    </div>
+{% endblock %}

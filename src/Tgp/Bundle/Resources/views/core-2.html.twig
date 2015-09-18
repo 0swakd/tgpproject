@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}The Good Plan{% endblock %} </title>
+        {% block meta %}
+            <meta charset="utf-8">
+        {% endblock %}
+
+        <meta name="description" value="{% block metadescription %}TheGoodPlan, les bons plans c'est ici.{% endblock %}">
+        
+        {% block js %}
+            <script src="{{asset('bundles/tgp/js/core.js')}}"></script>
+            <script src="{{asset('bundles/tgp/js/angular-1.4.1.min.js')}}"></script>
+        {% endblock %}
+        {% block css %}
+            <link rel="stylesheet" type="text/css" href="{{asset('bundles/tgp/css/core.css')}}" />
+            <link rel="stylesheet" type="text/css" href="{{asset('bundles/tgp/css/bootstrap.min.css')}}" />
+        {% endblock %}
+    </head>
+    <body>
+        {% block header %}
+        <div id="header">
+            <h1><a href="http://www.thegoodplan.net">The Good Plan</a></h1>
+            <div id="headerlog">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                <a class="log_button" href="{{ path('fos_user_security_logout') }}">
+                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+                {% else %}
+                <a class="log_button" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                <a class="log_button" href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endblock %}
+        {% block page %} 
+        <div id="page">
+            <h1>Error occured</h1>
+            <p>I bet you already know that, an error occured somewhere but we don't know where or why or...</p>
+            <p>Sorry about that</p>
+            <p>Really</p>
+        </div>
+        {% endblock %}
+    </body>
+</html>

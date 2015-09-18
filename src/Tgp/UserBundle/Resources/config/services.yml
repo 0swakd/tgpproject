@@ -1,0 +1,7 @@
+parameters:
+#    tgp_user.example.class: Tgp\UserBundle\Example
+
+services:
+#    tgp_user.example:
+#        class: %tgp_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

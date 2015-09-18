@@ -1,0 +1,30 @@
+<?php
+// src/Tgp/MapBundle/Entity/Geoloc.php
+namespace Tgp\MapBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="geoloc")
+ */
+class Geoloc
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=8)
+     */
+    protected $latitude;
+
+    /**
+     * @ORM\Column(type="decimal", precision=11, scale=8)
+     */
+    protected $longitude;
+}
+

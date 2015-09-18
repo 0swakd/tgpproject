@@ -1,0 +1,6 @@
+(function() {
+    var appMenu = angular.module("tgpMenu", [], function($interpolateProvider) {
+        $interpolateProvider.startSymbol('[[');
+        $interpolateProvider.endSymbol(']]');
+    });
+})();

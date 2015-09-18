@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}The Good Plan{% endblock %} </title>
+        {% block meta %}
+            <meta charset="utf-8">
+        {% endblock %}
+
+        <meta name="description" value="{% block metadescription %}TheGoodPlan, les bons plans c'est ici.{% endblock %}">
+        
+        {% block js %}
+            <script src="{{asset('bundles/tgp/js/main.js')}}"></script>
+        {% endblock %}
+        {% block css %}
+            <link href="{{asset('bundles/tgp/css/main.css')}}" rel="stylesheet" type="text/css" />
+        {% endblock %}
+    </head>
+    <body>
+        {% block header %}
+        <div id="header">
+            <h1><a href="http://www.thegoodplan.net">The Good Plan</a></h1>
+            <div id="headerlog">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                <a class="log_button" href="{{ path('fos_user_security_logout') }}">
+                {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+                {% else %}
+                <a class="log_button" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                <a class="log_button" href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endblock %}
+        {% block menu %} 
+        <div id="menu">
+            <h1>Social</h1>
+            <ul id="friend_options">
+                <li>
+                    <h2>Recherche</h2>
+                    <div class="content_li">
+                        <form id="seek_friend" onsubmit="seek_friend(); return false;" name="friend_form">
+                            <input type="text" value="" class="form_text" autocomplete="off" placeholder="Nom ou Pseudo"/>
+                            <input type="submit" value="Go" class="form_submit"/>
+                        </form>
+                    </div>
+                </li>
+                <li>
+                    <h2>Contacts</h2>
+                    <div class="content_li">
+                        <ul id="friend_list">
+                            <li class="default_li">...</li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <h2>Adresses</h2>
+                    <div class="content_li">
+                        <ul id="adress_list">
+                            <li class="default_li">...</li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <script>
+            update_menu();
+        </script>
+        {% endblock %}
+        {% block page %} 
+        <div id="page">
+            <h1>Error occured</h1>
+            <p>I bet you already know that, an error occured somewhere but we don't know where or why or...</p>
+            <p>Sorry about that</p>
+            <p>Really</p>
+        </div>
+        {% endblock %}
+    </body>
+</html>
