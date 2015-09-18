@@ -1,8 +1,0 @@
-td:nth-child(1) {
-    float: right;
-}
-
-form {
-    left: 50%;
-}
-
