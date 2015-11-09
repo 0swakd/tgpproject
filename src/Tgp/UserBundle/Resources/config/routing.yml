@@ -1,41 +1,24 @@
 user_friend_list:
-    path:     /getfriendlist/
+    path:     /friend/
     defaults: { _controller: TgpUserBundle:Friend:list }
+    requirements:
+        _method:    GET
 
 user_friend_get:
-    path:     /lookforfriend/{nameoremail}
+    path:     /friend/search/{nameoremail}
     defaults: { _controller: TgpUserBundle:Friend:get }
+    requirements:
+        _method:    GET
 
 user_friend_add:
-    path:     /addfriend/{name}
+    path:     /friend/{name}
     defaults: { _controller: TgpUserBundle:Friend:add }
-
-user_friend_remove:
-    path:     /removefriend/{name}
-    defaults: { _controller: TgpUserBundle:Friend:remove }
-
-user_user_get:
-    path:     /users/{nameoremail}
-    defaults: { _controller: TgpUserBundle:Users:get }
-    requirements:
-        _method:    GET
-user_contacts_list:
-    path:     /contacts
-    defaults: { _controller: TgpUserBundle:Contacts:list }
-    requirements:
-        _method:    GET
-#user_contacts_get:
-#    path:     /contacts/{nameoremail}
-#    defaults: { _controller: TgpUserBundle:Contacts:get }
-#    requirements:
-#        _method:    GET
-user_contacts_add:
-    path:     /contacts/{name}
-    defaults: { _controller: TgpUserBundle:Contacts:add }
     requirements:
         _method:    POST
-user_contact_remove:
-    path:     /contacts/{name}
-    defaults: { _controller: TgpUserBundle:Contacts:remove }
+
+user_friend_remove:
+    path:     /friend/{name}
+    defaults: { _controller: TgpUserBundle:Friend:remove }
     requirements:
         _method:    DELETE
+

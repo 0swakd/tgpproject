@@ -178,7 +178,7 @@ xmlhttpap.onreadystatechange = function() {
 }
 
 function send_add_place(name, lat, lng) {
-    xmlhttpap.open("POST", "addplace/" + name + "/" + lat + "/" + lng, true);
+    xmlhttpap.open("POST", "place/" + name + "/" + lat + "/" + lng, true);
     xmlhttpap.send();
 }
 
@@ -219,7 +219,7 @@ xmlhttprp.onreadystatechange = function() {
 }
 
 function send_rem_place(name, lat, lng) {
-    xmlhttprp.open("DELETE", "removeplace/" + name + "/" + lat + "/" + lng, true);
+    xmlhttprp.open("DELETE", "place/" + name + "/" + lat + "/" + lng, true);
     xmlhttprp.send();
 }
 
@@ -285,5 +285,5 @@ var req_place_list = new Request(
         );
 
 function update_place_list() {
-    req_place_list.send("GET", "getplacelist");
+    req_place_list.send("GET", "place/");
 }

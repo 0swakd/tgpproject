@@ -68,7 +68,8 @@ function seek_friend_action() {
     hide(document.getElementById('seek_result'));
     hide(document.getElementById('seek_error'));
     show(document.getElementById('seek_running'));
-    xmlhttp.open("GET", "lookforfriend/" + seek, true);
+    xmlhttp.open("GET", "friend/search/" + seek, true);
+//    xmlhttp.open("GET", "lookforfriend/" + seek, true);
     xmlhttp.send();
 }
 
@@ -129,7 +130,8 @@ xmlhttpfl.onreadystatechange = function() {
 
 function update_friend_list() {
     show(document.getElementById('fl_running'));
-    xmlhttpfl.open("GET", "getfriendlist/", true);
+//    xmlhttpfl.open("GET", "getfriendlist/", true);
+    xmlhttpfl.open("GET", "friend/", true);
     xmlhttpfl.send();
 }
 
@@ -164,7 +166,7 @@ xmlhttprf.onreadystatechange = function() {
 }
 
 function send_rem_friend(friend) {
-    xmlhttprf.open("DELETE", "removefriend/" + friend, true);
+    xmlhttprf.open("DELETE", "friend/" + friend, true);
     xmlhttprf.send();
 }
 
@@ -216,7 +218,7 @@ xmlhttpaf.onreadystatechange = function() {
 }
 
 function send_add_friend(friend) {
-    xmlhttpaf.open("POST", "addfriend/" + friend, true);
+    xmlhttpaf.open("POST", "friend/" + friend, true);
     xmlhttpaf.send();
 }
 
@@ -281,8 +283,7 @@ var req_friends_place_list = new Request(
         );
 
 function update_friends_place_list(id, name) {
-    req_friends_place_list.send("GET", "getfriendplacelist/" + id + "/" + name, true);
-//    req_friends_place_list.send("GET", "getfriendplacelist/" + id + "/" + name, false);
+    req_friends_place_list.send("GET", "place/friend/" + id + "/" + name, true);
 }
 
 

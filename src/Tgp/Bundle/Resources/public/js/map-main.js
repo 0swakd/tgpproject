@@ -5,7 +5,8 @@ function updateMapWidth() {
     var mapContainer = document.getElementById("map");
 
     var width = getScreenWidth();
-    mapContainer.style.width = width - 7 + "px";
+    if (mapContainer.style.width != width - 7 + "px") 
+        mapContainer.style.width = width - 7 + "px";
 }
 
 
@@ -13,13 +14,17 @@ function updateMapHeight() {
     var mapContainer = document.getElementById("map");
 
     var height = getScreenHeight();
-    mapContainer.style.height = height - 60 + "px";
+    if (mapContainer.style.height != height - 60 + "px") 
+        mapContainer.style.height = height - 60 + "px";
 }
 
 /* Initialisaiton de la carte principale */
 var map = undefined;
 
 function setupMap() {
+    updateMapHeight();
+    updateMapWidth();
+
     map = L.map('map').setView([48.853, 2.35], 13);
 
     L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {

@@ -1,14 +1,20 @@
 map_place_add:
-    path:     /addplace/{name}/{lat}/{lng}
+    path:     /place/{name}/{lat}/{lng}
     defaults: { _controller: TgpMapBundle:Place:add }
+    requirements:
+        _method:    POST
         
 map_place_remove:
-    path:     /removeplace/{name}/{lat}/{lng}
+    path:     /place/{name}/{lat}/{lng}
     defaults: { _controller: TgpMapBundle:Place:remove }
+    requirements:
+        _method:    DELETE
 
 map_place_list:
-    path:     /getplacelist
+    path:     /place/
     defaults: { _controller: TgpMapBundle:Place:list }
+    requirements:
+        _method:    GET
 
 map_place_search:
     path:     /place/search/{request}
@@ -16,41 +22,15 @@ map_place_search:
     requirements:
         _method:    GET
 
-get_friends_places:
-    path:     /getfriendsplacelist
-    defaults: { _controller: TgpMapBundle:GetFriendsPlaceList:get }
+#get_friends_places:
+#    path:     /getfriendsplacelist
+#    defaults: { _controller: TgpMapBundle:GetFriendsPlaceList:get }
+#    requirements:
+#        _method:    GET
 
 get_friend_places:
-    path:     /getfriendplacelist/{id}/{name}
+    path:     /place/friend/{id}/{name}
     defaults: { _controller: TgpMapBundle:GetFriendPlaceList:get }
-
-map_locations_add:
-    path:     /locations/{name}/{lat}/{lng}
-    defaults: { _controller: TgpMapBundle:Locations:add }
-    requirements:
-        _method:    POST
-map_locations_remove:
-    path:     /locations/{name}/{lat}/{lng}
-    defaults: { _controller: TgpMapBundle:Locations:remove }
-    requirements:
-        _method:    DELETE
-map_locations_list:
-    path:     /locations
-    defaults: { _controller: TgpMapBundle:Locations:list }
     requirements:
         _method:    GET
 
-
-#add_place:
-#    path:     /addplace/{name}/{lat}/{lng}
-#    defaults: { _controller: TgpMapBundle:AddPlace:set }
-#
-#remove_place:
-#    path:     /removeplace/{name}/{lat}/{lng}
-#    defaults: { _controller: TgpMapBundle:RemovePlace:set }
-#
-#get_places:
-#    path:     /getplacelist
-#    defaults: { _controller: TgpMapBundle:GetPlaceList:get }
-#
-#

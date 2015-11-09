@@ -72,7 +72,7 @@ li {
     right:1em;
     margin-top: 1em;
     overflow-y:scroll;
-    max-width: 50%;
+    max-width: 80%;
 }
 
 
@@ -121,7 +121,6 @@ input[type=submit]:hover {
 /* --- Page ----*/
 
 #page {
-/*    margin-top: 3em;*/
     background-color: #EFEFEF;
     border: solid #F1F1F1 0.1em;
 }
@@ -130,10 +129,15 @@ input[type=submit]:hover {
 /* --- Map --- */
 
 #map {
-/*    position: absolute !important;*/
     position:absolute;
     width:100%;
     height:40em;
     z-Index:1;
+}
+
+@media screen and (max-width: 640px) {
+    #menu {
+        max-width: 75%;
+    }
 }
 
