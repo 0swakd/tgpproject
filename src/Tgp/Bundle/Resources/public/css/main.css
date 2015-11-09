@@ -72,6 +72,7 @@ li {
     right:1em;
     margin-top: 1em;
     overflow-y:scroll;
+    max-width: 50%;
 }
 
 

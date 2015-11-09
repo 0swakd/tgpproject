@@ -102,5 +102,29 @@ class PlaceController extends Controller
 
         return $response;
     }
+
+    public function searchAction($request) 
+    {
+        $response = new JsonResponse();
+        $reqlen = strlen($request);
+
+        if ($reqlen <= 0 || $reqlen > 32) {
+            return $response;
+        }
+        
+        $ch = curl_init();
+
+        $req = curl_escape($ch, $request);
+        $url="http://nominatim.openstreetmap.org/search/{$req}?format=json&addressdetails=1";
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $r = curl_exec($ch);
+        curl_close($ch);
+
+        // reponse a JSON.parse();
+        return new JsonResponse($r);
+    }
 }
 

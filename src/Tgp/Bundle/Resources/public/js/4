@@ -390,7 +390,6 @@ function update_friend_list() {
 
 var xmlhttpsp = getXhr();
 
-/* Possible de la passer au format req_friends_place_list */
 xmlhttpsp.onreadystatechange = function() {
     var response;
     var jsonResponse;
@@ -416,60 +415,24 @@ xmlhttpsp.onreadystatechange = function() {
         return;
     }
 
+    console.log(jsonResponse);
     arrayResponse = JSON.parse(jsonResponse);
-
+    console.log(arrayResponse);
     var list = {};
-    var matrice = document.getElementById('spl_matrice');
-
 
     for (var e in arrayResponse) {
         var elem = {};
-        var res = arrayResponse[e];
-        var id = res.place_id;
-        elem.lat  = res.lat;
-        elem.lng  = res.lon;
-        elem.name = getDisplayAddress(res);
-
+        var id = arrayResponse[e].place_id;
+        elem.lat  = arrayResponse[e].lat;
+        elem.lng  = arrayResponse[e].lon;
+        elem.name = arrayResponse[e].display_name;
         list[id] = elem;
-
-        var nplace = matrice.cloneNode(true);
-        var ps = nplace.getElementsByTagName('p');
-        nplace.id = "spl_" + elem.name + "_" + elem.lat + "_" + elem.lng;
-        ps[0].innerHTML = elem.name;
-        ps[1].innerHTML = elem.lat;
-        ps[2].innerHTML = elem.lng;
-
-        matrice.parentNode.appendChild(nplace);
-        show(nplace);
     }
-
-    hide(matrice);
 
     seekplaces.refresh(list);
     hide(document.getElementById('seek_place_running'));
     show(document.getElementById('seek_place_result'));
 } 
-
-function getDisplayAddress(jsonObj) {
-    var ret = "";
-    if (typeof jsonObj == "object") {
-        if (typeof jsonObj.address == "object") {
-            var address = jsonObj.address;
-            if (typeof address.house_number == "string" && typeof address.road == "string" && typeof address.city == "string" && typeof address.postcode == "string") {
-                ret = address.house_number + " " + address.road + " " + address.city + " (" + address.postcode + ")";
-            }
-        } 
-        
-        if (ret == "" && typeof jsonObj.display_name == "string") {
-            ret = jsonObj.display_name;
-        }
-    }
-
-    if (ret == "") {
-        ret = "Error init";
-    }
-    return(ret);
-}
 
 function seek_place_action() {
     var seek = document.getElementById('seek_place_input').value;
@@ -878,8 +841,7 @@ var req_friends_place_list = new Request(
         );
 
 function update_friends_place_list(id, name) {
-    req_friends_place_list.send("GET", "getfriendplacelist/" + id + "/" + name, true);
-//    req_friends_place_list.send("GET", "getfriendplacelist/" + id + "/" + name, false);
+    req_friends_place_list.send("GET", "getfriendplacelist/" + id + "/" + name, false);
 }
 
 
@@ -1008,7 +970,6 @@ function new_seek_place_list(ev) {
     var ps = nplace.getElementsByTagName('p');
     
 
-    console.log("NEW_SEEK_PLACE_LIST");
     nplace.id = "spl_" + name + "_" + lat + "_" + lng;
     ps[0].innerHTML = name;
     ps[1].innerHTML = lat;

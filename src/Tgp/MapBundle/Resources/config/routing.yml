@@ -1,12 +1,20 @@
 map_place_add:
     path:     /addplace/{name}/{lat}/{lng}
     defaults: { _controller: TgpMapBundle:Place:add }
+        
 map_place_remove:
     path:     /removeplace/{name}/{lat}/{lng}
     defaults: { _controller: TgpMapBundle:Place:remove }
+
 map_place_list:
     path:     /getplacelist
     defaults: { _controller: TgpMapBundle:Place:list }
+
+map_place_search:
+    path:     /place/search/{request}
+    defaults: { _controller: TgpMapBundle:Place:search }
+    requirements:
+        _method:    GET
 
 get_friends_places:
     path:     /getfriendsplacelist
