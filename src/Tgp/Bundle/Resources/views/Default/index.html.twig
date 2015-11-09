@@ -11,7 +11,18 @@
 {% block js %}
     {{parent()}}
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="{{asset('bundles/tgp/js/ui-utils.js')}}"></script>
+    <script src="{{asset('bundles/tgp/js/ajax-utils.js')}}"></script>
+    <script src="{{asset('bundles/tgp/js/list-utils.js')}}"></script>
+    <script src="{{asset('bundles/tgp/js/menu-utils.js')}}"></script>
+    <script src="{{asset('bundles/tgp/js/menu.js')}}"></script>
+    <script src="{{asset('bundles/tgp/js/map-utils.js')}}"></script>
+    <script src="{{asset('bundles/tgp/js/list-main.js')}}"></script>
     <script src="{{asset('bundles/tgp/js/map.js')}}"></script>
+    <script src="{{asset('bundles/tgp/js/map-main.js')}}"></script>
+    <script src="{{asset('bundles/tgp/js/main-place.js')}}"></script>
+    <script src="{{asset('bundles/tgp/js/main-friend.js')}}"></script>
+    <script src="{{asset('bundles/tgp/js/main-index.js')}}"></script>
 {% endblock %}
 
 {% block css %}
@@ -115,9 +126,6 @@
                 </li>
             </ul>
         </div>
-       <script>
-            update_menu();
-        </script>
 {% endblock %}
 {% block page %}
     <div id="map"></div> 
