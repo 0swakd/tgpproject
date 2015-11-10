@@ -14,7 +14,7 @@ function new_friend_list(ev) {
     spans[0].innerHTML = name;
     matrice.parentNode.appendChild(nplace);
     show(nplace);
-    update_friends_place_list(id, name);
+    update_friends_place_list(id, name, true);
 }
 
 function old_friend_list(ev) {
@@ -130,7 +130,6 @@ xmlhttpfl.onreadystatechange = function() {
 
 function update_friend_list() {
     show(document.getElementById('fl_running'));
-//    xmlhttpfl.open("GET", "getfriendlist/", true);
     xmlhttpfl.open("GET", "friend/", true);
     xmlhttpfl.send();
 }
@@ -237,12 +236,9 @@ function add_friend() {
 
 /* Gestion Ajax */
 function req_before_friends_place_list() {
-/*    show(document.getElementById('al_running'));*/
 }
 
 function local_err_friends_place_list () {
-/*    document.getElementById('al_error_msg').innerHTML = "Technical";
-    show(document.getElementById('al_error'));*/
 }
 
 function req_return_friends_place_list(jsonResponse) {
@@ -252,8 +248,6 @@ function req_return_friends_place_list(jsonResponse) {
     }
 
     if (typeof(jsonResponse.error) == "string") {
-/*        document.getElementById('al_error_msg').innerHTML = jsonResponse.error;
-        show(document.getElementById('al_error'));*/
         return;
     }
 
@@ -266,13 +260,14 @@ function req_return_friends_place_list(jsonResponse) {
             friendsplaces.merge(jsonResponse[e].places);
         }
     }
-/*    show(document.getElementById('al_result'));   */
+
+    if (placefriendqueue != undefined) {
+        placefriendqueue.run();
+    }
 }
 
-function req_end_friends_place_list() {
-/*    hide(document.getElementById('al_running'));*/
+function req_end_friends_place_list(queue) {
 }
-
 
 var req_friends_place_list = new Request(
         req_before_friends_place_list,
@@ -282,8 +277,22 @@ var req_friends_place_list = new Request(
         req_end_friends_place_list
         );
 
-function update_friends_place_list(id, name) {
-    req_friends_place_list.send("GET", "place/friend/" + id + "/" + name, true);
+function queue_friend_place(params) {
+    req_friends_place_list.send(params.method, params.query, true);
+}
+
+var placefriendqueue = undefined;
+
+function update_friends_place_list(id, name, prio) {
+    if (placefriendqueue == undefined) {
+        placefriendqueue = new Queue();
+    }
+
+    if (prio == true) {
+        placefriendqueue.addFirst(queue_friend_place, {method:"GET", query:"place/friend/" + id + "/" + name});
+    } else {
+        placefriendqueue.add(queue_friend_place, {method:"GET", query:"place/friend/" + id + "/" + name});
+    }
 }
 
 

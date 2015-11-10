@@ -49,14 +49,13 @@ function old_place_map(ev) {
 function new_seek_place_list(ev) {
     var elem = ev.detail;
     var name = elem.name;
-    var lat = elem.lat.toFixed(8);
-    var lng = elem.lng.toFixed(8);
+    var lat = parseFloat(elem.lat).toFixed(8);
+    var lng = parseFloat(elem.lng).toFixed(8);
     var matrice = document.getElementById('spl_matrice');
     var nplace = matrice.cloneNode(true);
     var ps = nplace.getElementsByTagName('p');
     
 
-    console.log("NEW_SEEK_PLACE_LIST");
     nplace.id = "spl_" + name + "_" + lat + "_" + lng;
     ps[0].innerHTML = name;
     ps[1].innerHTML = lat;
@@ -68,41 +67,38 @@ function new_seek_place_list(ev) {
 function old_seek_place_list(ev) {
     var elem = ev.detail;
     var name = elem.name;
-    var lat = elem.lat;
-    var lng = elem.lng;
+    var lat = parseFloat(elem.lat).toFixed(8);
+    var lng = parseFloat(elem.lng).toFixed(8);
 
     var node = document.getElementById("spl_" + name + "_" + lat + "_" + lng);
     node.parentNode.removeChild(node);
 }
 
 /* Gestion Ajax */
-var xmlhttpsp = getXhr();
 
-/* Possible de la passer au format req_friends_place_list */
-xmlhttpsp.onreadystatechange = function() {
-    var response;
-    var jsonResponse;
+function req_before_seek_place_list() {
+    show(document.getElementById('seek_place_running'));
+}
 
-    if (xmlhttpsp.readyState != 4 ||  xmlhttpsp.status != 200) {
-        return;
-    }
+function local_err_seek_place_list () {
+    document.getElementById('seek_place_error_msg').innerHTML = "Technical";
+    show(document.getElementById('seek_place_error'));
+}
 
-    response = xmlhttpsp.responseText;
-
-    try {
-        jsonResponse = JSON.parse(response);
-    } catch(e) {
-        hide(document.getElementById('seek_place_running'));
-        show(document.getElementById('seek_place_error'));
+function req_return_seek_place_list(jsonResponse) {
+    if (jsonResponse == null) {
         return;
     }
 
     if (typeof(jsonResponse.error) == "string") {
-        hide(document.getElementById('seek_place_running'));
         document.getElementById('seek_place_error_msg').innerHTML = jsonResponse.error;
         show(document.getElementById('seek_place_error'));
         return;
     }
+
+    var matrice = document.getElementById('spl_matrice');
+
+    hide(matrice);
 
     arrayResponse = JSON.parse(jsonResponse);
 
@@ -119,35 +115,31 @@ xmlhttpsp.onreadystatechange = function() {
         elem.name = getDisplayAddress(res);
 
         list[id] = elem;
-
-        var nplace = matrice.cloneNode(true);
-        var ps = nplace.getElementsByTagName('p');
-        nplace.id = "spl_" + elem.name + "_" + elem.lat + "_" + elem.lng;
-        ps[0].innerHTML = elem.name;
-        ps[1].innerHTML = elem.lat;
-        ps[2].innerHTML = elem.lng;
-
-        matrice.parentNode.appendChild(nplace);
-        show(nplace);
     }
 
-    hide(matrice);
-
     seekplaces.refresh(list);
-    hide(document.getElementById('seek_place_running'));
-    show(document.getElementById('seek_place_result'));
-} 
 
+    show(document.getElementById('seek_place_result'));   
+}
+
+function req_end_seek_place_list() {
+    hide(document.getElementById('seek_place_running'));
+}
+
+var req_seek_place_list = new Request(
+        req_before_seek_place_list,
+        null,
+        local_err_seek_place_list,
+        req_return_seek_place_list,
+        req_end_seek_place_list
+        );
 
 function seek_place_action() {
     var seek = document.getElementById('seek_place_input').value;
 
-    hide(document.getElementById('seek_place_result'));
-    hide(document.getElementById('seek_place_error'));
-    show(document.getElementById('seek_place_running'));
-    xmlhttpsp.open("GET", "place/search/" + encodeURIComponent(seek), true);
-    xmlhttpsp.send();
+    req_seek_place_list.send("GET", "place/search/" + encodeURIComponent(seek));
 }
+
 
 /*========== ADD PLACE =============*/
 

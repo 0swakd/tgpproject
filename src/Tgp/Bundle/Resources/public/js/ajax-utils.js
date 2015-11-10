@@ -7,6 +7,7 @@ function getXhr() {
     }
 }
 
+/* TODO Voir pour créer une logique composite Requeste + Queue avec un objet qui contient les requetes pour chaques ressources */
 function Request(beforeRequest, requestRunning, localError, requestReturn, endRequest) {
     this.xmlhttp = getXhr();
     this.xmlhttp.wrapper = this;
@@ -54,4 +55,38 @@ function Request(beforeRequest, requestRunning, localError, requestReturn, endRe
     }
 }
 
+
+/* TODO Voir pour créer une logique composite Requeste + Queue avec un objet qui contient les requetes pour chaques ressources */
+function Queue() {
+    this.queue = [];
+    this.running = 0;
+
+    this.add = add;
+    this.addFirst = addFirst;
+    this.run = run;
+
+    function add(fct, params) {
+        this.queue.push({fonction:fct, parametre:params});
+        if (this.running == 0) {
+            this.run();
+        }
+    }
+
+    function addFirst(fct, params) {
+        this.queue.unshift({fonction:fct, parametre:params});
+        if (this.running == 0) {
+            this.run();
+        }
+    }
+
+    function run() {
+        var obj = this.queue.shift();
+        if (obj == undefined) {
+            this.running = 0;
+            return;
+        }
+        this.running = 1;
+        obj.fonction(obj.parametre, this);
+    }
+}
 

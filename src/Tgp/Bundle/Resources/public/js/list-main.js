@@ -8,11 +8,11 @@ function initList() {
     var pl = document.getElementById("places_list");
     var fl = document.getElementById("friends_list");
     var fpl = document.getElementById("friends_places_list");
-    var spl = document.getElementById("seek_places_list");
+    var spl = document.getElementById("seek_place_box");
+    seekplaces = new List(spl);
     places = new List(pl);
     friends = new List(fl);
     friendsplaces = new List(fpl);
-    seekplaces = new List(spl);
     addevent(places.listener, "listadd", new_place_list);
     addevent(places.listener, "listadd", new_place_map);
     addevent(places.listener, "listdel", old_place_list);

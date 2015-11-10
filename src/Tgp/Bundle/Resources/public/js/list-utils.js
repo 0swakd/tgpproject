@@ -18,7 +18,7 @@ function List(node) {
         }
 
         for (var e in this.list) {
-            if (this.list[e].markupdate == this.markupdate) {
+            if (this.list[e] != undefined && this.list[e].markupdate == this.markupdate) {
                 this.remove(e);
             }
         }

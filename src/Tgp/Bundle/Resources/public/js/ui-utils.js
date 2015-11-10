@@ -122,8 +122,15 @@ function getDisplayAddress(jsonObj) {
     if (typeof jsonObj == "object") {
         if (typeof jsonObj.address == "object") {
             var address = jsonObj.address;
+            /* TODO ameliorer tout ca */
             if (typeof address.house_number == "string" && typeof address.road == "string" && typeof address.city == "string" && typeof address.postcode == "string") {
                 ret = address.house_number + " " + address.road + " " + address.city + " (" + address.postcode + ")";
+            } else if (typeof address.road == "string" && typeof address.city == "string" && typeof address.postcode == "string") {
+                ret = address.road + " " + address.city + " (" + address.postcode + ")";
+            } else if (typeof address.suburb == "string" && typeof address.city == "string" && typeof address.postcode == "string") {
+                ret = address.suburb + " " + address.city + " (" + address.postcode + ")";
+            } else if (typeof address.suburb == "string" && typeof address.village == "string" && typeof address.postcode == "string") {
+                ret = address.suburb + " " + address.village + " (" + address.postcode + ")";
             }
         } 
         
