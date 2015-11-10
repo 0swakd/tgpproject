@@ -53,13 +53,13 @@ function new_seek_place_list(ev) {
     var lng = parseFloat(elem.lng).toFixed(8);
     var matrice = document.getElementById('spl_matrice');
     var nplace = matrice.cloneNode(true);
-    var ps = nplace.getElementsByTagName('p');
+    var spans = nplace.getElementsByTagName('span');
     
 
     nplace.id = "spl_" + name + "_" + lat + "_" + lng;
-    ps[0].innerHTML = name;
-    ps[1].innerHTML = lat;
-    ps[2].innerHTML = lng;
+    spans[0].innerHTML = name;
+    spans[1].innerHTML = lat;
+    spans[2].innerHTML = lng;
     matrice.parentNode.appendChild(nplace);
     show(nplace);
 }
