@@ -35,7 +35,7 @@
 <!--            <p id="menu_title"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>Menu</p>-->
             <ul id="menu_list">
                 <li>
-                    <p id="seek_place_title">Recherche Adresse Beta</p>
+                    <p id="seek_place_title">Recherche Adresse</p>
                     <div id="seek_place_box" class="content_li">
                         <form id="seek_place" onsubmit="seek_place_action(); return false;" name="seek_place_form">
                             <input id="seek_place_input" type="text" value="" class="form_text" autocomplete="off" placeholder="Adresse"/>
@@ -82,9 +82,11 @@
                 </li>
                 <li>
                     <p id="geoloc_title">Geolocalisation</p>
+                    <div id="geoloc_box">
                     <p><a href="javascript:void(0)" onclick="map_center()">[ Centrer sur moi ]</a></p>
                     <p><a href="javascript:void(0)" onclick="map_follow()">[ Me suivre ]</a></p>
                     <p><a href="javascript:void(0)" onclick="map_stop_follow()">[ Arreter de suivre ]</a></p>
+                    </div>
                 </li>
                <li>
                     <p id="friends_title">Contacts</p>
