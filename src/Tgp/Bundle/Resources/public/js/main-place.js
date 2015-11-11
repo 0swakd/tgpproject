@@ -238,6 +238,15 @@ function rem_place(e) {
     del_place(name, lat, lng)
 }
 
+function center_place_click(e) {
+    var node = e.target.parentNode;
+    var spans = node.getElementsByTagName('span');
+    var name = spans[0].innerHTML;
+    var lat = spans[1].innerHTML;
+    var lng = spans[2].innerHTML;
+
+    map.setView([lat, lng], 18);
+}
 
 
 

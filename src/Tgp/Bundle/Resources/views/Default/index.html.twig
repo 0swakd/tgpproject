@@ -60,7 +60,7 @@
                     </div>
                 </li>
                 <li>
-                    <p id="seek_title">Recherche Amis</p>
+                    <p id="seek_title">Recherche Contact</p>
                     <div id="seek_box" class="content_li">
                         <form id="seek_friend" onsubmit="seek_friend_action(); return false;" name="friend_form">
                             <input id="seek_friend_input" type="text" value="" class="form_text" autocomplete="off" placeholder="Nom ou Mail"/>
@@ -100,7 +100,7 @@
                         <div id="fl_result" style="display:none">
                             <ul id="friend_list">
                                 <li id="fl_matrice" class="default_li">
-                                    <p style="margin:0.3em"><a href="javascript:void(0);" onclick="rem_friend(event); return;"><i class="glyphicon glyphicon-remove-circle" aria-hidden="true"></i></a> <span>...</span></p>
+                                    <p style="margin:0.3em"><a class="glyphicon glyphicon-remove-circle" aria-hidden="true" href="javascript:void(0);" onclick="rem_friend(event); return;"></a> <span>...</span></p>
                                     <p style="display:none;margin:0">Ses adresses</p>
                                 </li>
                             </ul>
@@ -121,7 +121,7 @@
                         </div>
                         <div id="al_result" style="display:none">
                             <ul id="address_list">
-                                <li id="al_matrice" class="default_li"><a href="javascript:void(0);" onclick="rem_place(event); return;"><i class="glyphicon glyphicon-remove-circle" aria-hidden="true"></i></a> <span>...</span><span style="display:none"></span><span style="display:none"></span></li>
+                                <li id="al_matrice" class="default_li"><a class="glyphicon glyphicon-remove-circle" aria-hidden="true" href="javascript:void(0);" onclick="rem_place(event); return;"></a><a class="glyphicon glyphicon-map-marker" aria-hidden="true" href="javascript:void(0);" onclick="center_place_click(event); return;"></a> <span>...</span><span style="display:none"></span><span style="display:none"></span></li>
                             </ul>
                         </div>
                     </div>

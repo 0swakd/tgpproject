@@ -156,5 +156,8 @@ input[type=submit]:hover {
     #menu {
         max-width: 75%;
     }
+    #header  h1 {
+        font-size: 0.9em;
+    }
 }
 
