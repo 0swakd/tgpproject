@@ -54,6 +54,9 @@ function moveInterest(action, arg1) {
                 .bindPopup(pinme)
                 .openPopup();
         }
+        if (action == "mark") {
+            map.setView([arg1.lat, arg1.lng]);
+        }
     }
 }
 

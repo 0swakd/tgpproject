@@ -74,6 +74,15 @@ function old_seek_place_list(ev) {
     node.parentNode.removeChild(node);
 }
 
+function mark_seeked_place(e) {
+    var node = e.target.parentNode.parentNode;
+    var spans = node.getElementsByTagName('span');
+    var lat = spans[1].innerHTML;
+    var lng = spans[2].innerHTML;
+
+    moveInterest("mark", {lat:lat, lng:lng});
+}
+
 /* Gestion Ajax */
 
 function req_before_seek_place_list() {
