@@ -9,7 +9,6 @@ function updateMenuHeight() {
 var menuRight = menuRight || new ItemMenu();
 
 function openGlobalItem (e) {
-    document.getElementById("menu_title").innerHTML = "Social";
     show(document.getElementById("menu_list"));
     return;
 }
@@ -30,7 +29,6 @@ function openPlacesItem () {
     return;
 }
 function closeGlobalItem () {
-    document.getElementById("menu_title").innerHTML = "=";
     hide(document.getElementById("menu_list"));
     return;
 }

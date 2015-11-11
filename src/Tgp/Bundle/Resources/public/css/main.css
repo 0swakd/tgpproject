@@ -75,6 +75,11 @@ li {
     max-width: 45%;
 }
 
+input[type=text] {
+    color: #000;
+}
+
+
 
 input[type=submit] {
     color: #fff;
@@ -121,6 +126,14 @@ input[type=submit]:hover {
 #menu a {
     color: #11DDAA
 }
+/*
+.btn-menu {
+    background-color: rgba(150, 11, 11, 1);
+    color: #DADADA;
+}
+.btn-menu:hover {
+    color: #ADADAD;
+}*/
 
 /* --- Page ----*/
 

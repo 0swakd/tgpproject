@@ -27,11 +27,12 @@
 
 {% block css %}
     {{parent()}}
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 {% endblock %}
 {% block menu %}
         <div id="menu">
-            <p id="menu_title">Menu [Réduire]</p>
+            <button id="menu_title" type="button" class="btn btn-default" aria-label="menu"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span> Menu</button>
+<!--            <p id="menu_title"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>Menu</p>-->
             <ul id="menu_list">
                 <li>
                     <p id="seek_place_title">Recherche Adresse Beta</p>
@@ -97,7 +98,7 @@
                         <div id="fl_result" style="display:none">
                             <ul id="friend_list">
                                 <li id="fl_matrice" class="default_li">
-                                    <p style="margin:0.3em"><a href="javascript:void(0);" onclick="rem_friend(event); return;">X</a> <span>...</span></p>
+                                    <p style="margin:0.3em"><a href="javascript:void(0);" onclick="rem_friend(event); return;"><i class="glyphicon glyphicon-remove-circle" aria-hidden="true"></i></a> <span>...</span></p>
                                     <p style="display:none;margin:0">Ses adresses</p>
                                 </li>
                             </ul>
@@ -118,7 +119,7 @@
                         </div>
                         <div id="al_result" style="display:none">
                             <ul id="address_list">
-                                <li id="al_matrice" class="default_li"><a href="javascript:void(0);" onclick="rem_place(event); return;">X</a> <span>...</span><span style="display:none"></span><span style="display:none"></span></li>
+                                <li id="al_matrice" class="default_li"><a href="javascript:void(0);" onclick="rem_place(event); return;"><i class="glyphicon glyphicon-remove-circle" aria-hidden="true"></i></a> <span>...</span><span style="display:none"></span><span style="display:none"></span></li>
                             </ul>
                         </div>
                     </div>
