@@ -60,12 +60,21 @@ function moveInterest(action, arg1) {
     }
 }
 
+var nomapclick = 1;
+/*var forevermapclick = 1;*/
+
 function mapClickConfirmed() {
     moveInterest("click", lastclick.latlng);
     lastclick = {};
+
+    nomapclick = 1;
 }
 
 function mapClick(e) {
+    if (nomapclick == 1) {
+        return;
+    }
+
     if (lastclick.timeout != undefined) {
         clearTimeout(lastclick.timeout);
         lastclick.timeout = undefined;
@@ -74,6 +83,12 @@ function mapClick(e) {
     lastclick.latlng = e.latlng;
     lastclick.timeout = setTimeout(mapClickConfirmed, 500);
 }
+
+/* TODO penser comment faire pour avoir un mode forevermapclick pas le temps la */
+function allow_map_click(forever) {
+    nomapclick = 0;
+}
+
 
 /* Gestion des pins */
 /* TODO faire quelque chose d'un peu plus generique pour pin_place : extraire la logique de pin_place pour que la carte soit un parametre et que le type d'affichage en soit un aussi pour pouvoir déplace pin_place dans map-utils.js  pareil pour pins ca doit etre un parametre :*/

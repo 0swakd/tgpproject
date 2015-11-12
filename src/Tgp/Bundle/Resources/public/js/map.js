@@ -6,6 +6,7 @@ function initFollower() {
 var showCount = 0;
 
 function showPosition(position) {
+    /*
     console.log("showPosition : showCount [" + showCount + "]");
     console.log(position);
     console.log(position.coords);
@@ -15,7 +16,7 @@ function showPosition(position) {
     console.log(position.coords.altitude);
     console.log(position.coords.altitudeAccuracy);
     console.log(position.coords.heading);
-    console.log(position.coords.speed);
+    console.log(position.coords.speed);*/
 //    console.log(position.timestamp); // timestamp ?
     map.setView([position.coords.latitude, position.coords.longitude], 14);
 }
@@ -35,7 +36,7 @@ function updateFollowerPos(arg) {
 }
 
 function followPosition(position) {
-    console.log("followPosition : followCount [" + followCount + "]");
+/*    console.log("followPosition : followCount [" + followCount + "]");
     console.log(position);
     console.log(position.coords);
     console.log(position.coords.latitude);
@@ -44,7 +45,7 @@ function followPosition(position) {
     console.log(position.coords.altitude);
     console.log(position.coords.altitudeAccuracy);
     console.log(position.coords.heading);
-    console.log(position.coords.speed);
+    console.log(position.coords.speed);*/
 //    console.log(position.timestamp); // timestamp ?
     map.setView([position.coords.latitude, position.coords.longitude], 14);
     updateFollowerPos({
