@@ -68,6 +68,8 @@ function mapClickConfirmed() {
     lastclick = {};
 
     nomapclick = 1;
+    var mapNode = document.getElementById("map");
+    removeclass(mapNode, "map-pin");
 }
 
 function mapClick(e) {
@@ -87,6 +89,8 @@ function mapClick(e) {
 /* TODO penser comment faire pour avoir un mode forevermapclick pas le temps la */
 function allow_map_click(forever) {
     nomapclick = 0;
+    var mapNode = document.getElementById("map");
+    addclass(mapNode, "map-pin");
 }
 
 

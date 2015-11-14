@@ -75,6 +75,10 @@ li {
     max-width: 45%;
 }
 
+.map-pin:hover {
+    cursor: pointer;
+}
+
 input[type=text] {
     color: #000;
 }
