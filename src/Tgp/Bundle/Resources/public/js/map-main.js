@@ -46,7 +46,7 @@ function moveInterest(action, arg1) {
         var pinme = document.getElementById("pinme").cloneNode(true);
         show(pinme);
         if (currentInterest == undefined) {
-            currentInterest = L.marker([arg1.lat, arg1.lng]).addTo(map)
+            currentInterest = L.marker([arg1.lat, arg1.lng], {draggable:true}).addTo(map)
                 .bindPopup(pinme)
                 .openPopup();
         } else {
