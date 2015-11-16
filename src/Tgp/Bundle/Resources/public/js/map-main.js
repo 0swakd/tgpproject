@@ -137,10 +137,29 @@ function pin_place(name, lat, lng, opt) {
     }
 
     if (typeof opt == "string") {
-        var myIcon = L.divIcon({size:"20px", html:"<p>" + name + "</p>"});
+//        var myIcon = L.divIcon({size:"20px", html:"<p>" + name + "</p>"});
+        var myIcon = L.icon({
+            iconUrl: '/bundles/tgp/images/pointer_red.png',
+            iconSize: [25,41],
+            iconAnchor: [12.5,41],
+            popupAnchor: [0,-39],
+            shadowUrl: '/bundles/tgp/images/shadow_small.png',
+            shadowSize: [50,41],
+            shadowAnchor: [12.5,41],
+        });
         var marker = L.marker([lat, lng], {draggable:false, icon: myIcon});
     } else {
-        var marker = L.marker([lat, lng], {draggable:false});
+        var myIcon = L.icon({
+            iconUrl: '/bundles/tgp/images/pointer_sky.png',
+            iconSize: [25,41],
+            iconAnchor: [12.5,41],
+            popupAnchor: [0,-39],
+            shadowUrl: '/bundles/tgp/images/shadow_small.png',
+            shadowSize: [50,41],
+            shadowAnchor: [12.5,41],
+        });
+        var marker = L.marker([lat, lng], {draggable:false, icon: myIcon});
+//        var marker = L.marker([lat, lng], {draggable:false});
     }
     map.addLayer(marker);
     marker.bindPopup(name);

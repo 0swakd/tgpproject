@@ -677,18 +677,18 @@ function mapClick(e) {
 
 var map = undefined;
 
-function setupMap() {
-    map = L.map('map').setView([48.853, 2.35], 13);
-
-    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//    L.tileLayer('http://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
-//    L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors | libjs : leaflet',
-            maxZoom: 18
-        }).addTo(map);
-
-    map.on('click', mapClick);
-}
+//function setupMap() {
+//    map = L.map('map').setView([48.853, 2.35], 13);
+//
+//    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+////    L.tileLayer('http://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+////    L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+//            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors | libjs : leaflet',
+//            maxZoom: 18
+//        }).addTo(map);
+//
+//    map.on('click', mapClick);
+//}
 
 
 addevent(window, "load", setupMap);
