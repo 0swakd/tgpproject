@@ -21,6 +21,13 @@ function updateMapHeight() {
 /* Initialisaiton de la carte principale */
 var map = undefined;
 
+var layerOptions = [
+    {name:'classic', layer:'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', attribution:'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'},
+    {name:'dark', layer:'http://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'},
+    {name:'light', layer:'http://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'},
+    {name:'Satelite', layer:'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', attribution:'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'},
+];
+
 function setupMap() {
     updateMapHeight();
     updateMapWidth();
@@ -34,22 +41,39 @@ function setupMap() {
         startView = user.startView;
         startZoom = user.startZoom;
     } else {
-        layer = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        layer = 0;
         startView = [48.853, 2.35];
         startZoom = 13;
     }
-//    map = L.map('map').setView([48.853, 2.35], 13);
-    map = L.map('map').setView(startView, startZoom);
 
-//    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    L.tileLayer(layer, {
-//    L.tileLayer('http://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
-//    L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors | libjs : leaflet',
-            maxZoom: 18
-        }).addTo(map);
+    var classic = L.tileLayer(layerOptions[0].layer, {attribution: layerOptions[0].attribution}),
+        dark = L.tileLayer(layerOptions[1].layer, {attribution: layerOptions[1].attribution}),
+        light = L.tileLayer(layerOptions[2].layer, {attribution: layerOptions[2].attribution}),
+        satelite = L.tileLayer(layerOptions[3].layer, {attribution: layerOptions[3].attribution});
 
-    map.on('click', mapClick);
+    map = L.map('map', {
+        center: startView,
+        zoom: startZoom,
+        layers: [classic]
+    });
+
+    var baseMaps = {
+        "Classic": classic,
+        "Dark": dark,
+        "Light": light,
+        "Satelite": satelite,
+    };
+
+    L.control.layers(baseMaps, null, {position: 'bottomleft'}).addTo(map);
+
+//    map = L.map('map').setView(startView, startZoom);
+//
+//    L.tileLayer(layerOptions[layer].layer, {
+//            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+//            maxZoom: 18
+//        }).addTo(map);
+//
+//    map.on('click', mapClick);
 }
 
 /* Gestion du point d'interet : endroit ou l'utilisateur a ajouté une marque en cliquant dessus.  */
