@@ -73,7 +73,7 @@ function setupMap() {
 //            maxZoom: 18
 //        }).addTo(map);
 //
-//    map.on('click', mapClick);
+    map.on('click', mapClick);
 }
 
 /* Gestion du point d'interet : endroit ou l'utilisateur a ajouté une marque en cliquant dessus.  */
