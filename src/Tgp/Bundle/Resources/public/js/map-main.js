@@ -66,13 +66,6 @@ function setupMap() {
 
     L.control.layers(baseMaps, null, {position: 'bottomleft'}).addTo(map);
 
-//    map = L.map('map').setView(startView, startZoom);
-//
-//    L.tileLayer(layerOptions[layer].layer, {
-//            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
-//            maxZoom: 18
-//        }).addTo(map);
-//
     map.on('click', mapClick);
 }
 

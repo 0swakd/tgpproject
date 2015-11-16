@@ -80,6 +80,8 @@ function stopFollower() {
 }
 
 function map_center () {
+    /* TODO voir la fonction map.locate avec les options : http://leafletjs.com/reference.html#map-locate-options */
+    /* TODO Bon après on peut quand même le faire à la main vu qu'on aura surement besoin de la geoloc en dur, a voir, a tester tout ca */
     getLocation(0);
 }
 
