@@ -26,6 +26,8 @@ var layerOptions = [
     {name:'dark', layer:'http://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'},
     {name:'light', layer:'http://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'},
     {name:'Satelite', layer:'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', attribution:'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'},
+    {name:'Night', layer:'http://map1.vis.earthdata.nasa.gov/wmts-webmerc/VIIRS_CityLights_2012/default/{time}/{tilematrixset}{maxZoom}/{z}/{y}/{x}.{format}', attribution:'Imagery provided by services from the Global Imagery Browse Services (GIBS), operated by the NASA/GSFC/Earth Science Data and Information System (<a href="https://earthdata.nasa.gov">ESDIS</a>) with funding provided by NASA/HQ.', bounds: [[-85.0511287776, -179.999999975], [85.0511287776, 179.999999975]], minZoom: 1, maxZoom: 8, format: 'jpg', time: '', tilematrixset: 'GoogleMapsCompatible_Level'},
+    {name:'Neat', layer:'http://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', attribution:'Imagery from <a href="http://mapbox.com/about/maps/">MapBox</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>', subdomains: 'abcd', id:'tgpid', accessToken:'pk.eyJ1IjoiYW50b2luZXRncCIsImEiOiJjaWgybXlpejMwMG45a3FseTlkNHYxcWRxIn0.FE0AiRYUyzuYX0j23Nh-UQ'},
 ];
 
 function setupMap() {
@@ -49,7 +51,10 @@ function setupMap() {
     var classic = L.tileLayer(layerOptions[0].layer, {attribution: layerOptions[0].attribution}),
         dark = L.tileLayer(layerOptions[1].layer, {attribution: layerOptions[1].attribution}),
         light = L.tileLayer(layerOptions[2].layer, {attribution: layerOptions[2].attribution}),
-        satelite = L.tileLayer(layerOptions[3].layer, {attribution: layerOptions[3].attribution});
+        satelite = L.tileLayer(layerOptions[3].layer, {attribution: layerOptions[3].attribution}),
+        night = L.tileLayer(layerOptions[4].layer, {attribution: layerOptions[4].attribution, bounds: layerOptions[4].bounds, minZoom: layerOptions[4].minZoom, maxZoom: layerOptions[4].maxZoom, format: layerOptions[4].format, time: layerOptions[4].time, tilematrixset: layerOptions[4].tilematrixset}),
+        neat = L.tileLayer(layerOptions[5].layer, {attribution: layerOptions[5].attribution, subdomains: layerOptions[5].subdomains, id: layerOptions[5].id, accessToken: layerOptions[5].accessToken})
+            ;
 
     map = L.map('map', {
         center: startView,
@@ -62,6 +67,8 @@ function setupMap() {
         "Dark": dark,
         "Light": light,
         "Satelite": satelite,
+        "Neat" : neat,
+        "Night": night,
     };
 
     L.control.layers(baseMaps, null, {position: 'bottomleft'}).addTo(map);
@@ -137,7 +144,6 @@ function pin_place(name, lat, lng, opt) {
     }
 
     if (typeof opt == "string") {
-//        var myIcon = L.divIcon({size:"20px", html:"<p>" + name + "</p>"});
         var myIcon = L.icon({
             iconUrl: '/bundles/tgp/images/pointer_red.png',
             iconSize: [25,41],
