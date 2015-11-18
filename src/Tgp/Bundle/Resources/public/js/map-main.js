@@ -67,7 +67,7 @@ function setupMap() {
         "Dark": dark,
         "Light": light,
         "Satelite": satelite,
-        "Neat" : neat,
+//        "Neat" : neat,
         "Night": night,
     };
 
