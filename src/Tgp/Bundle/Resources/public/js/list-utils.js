@@ -35,6 +35,10 @@ function List(node) {
     }
 
     function add(e, elem) {
+        if (this.list[e] != undefined) {
+            return;
+        }
+
         this.list[e] = elem;
         dispevent(this.listener, "listadd", {'detail' : this.list[e] });
     }

@@ -19,6 +19,8 @@ function initList() {
     addevent(places.listener, "listdel", old_place_map);
     addevent(friends.listener, "listadd", new_friend_list);
     addevent(friends.listener, "listdel", old_friend_list);
+//    addevent(friends.listener, "listadd", new_friend_place_map);
+//    addevent(friends.listener, "listdel", old_place_map);
     addevent(friendsplaces.listener, "listadd", new_friend_place_map);
     addevent(friendsplaces.listener, "listdel", old_place_map);
     addevent(seekplaces.listener, "listadd", new_seek_place_list);

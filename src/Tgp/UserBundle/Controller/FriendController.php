@@ -35,8 +35,9 @@ class FriendController extends Controller
         $email = $friend->getEmail();
 
         $name = $friend->getUsername();
+        $id = $friend->getId();
 
-        $arr = array('name' => $name);
+        $arr = array('name' => $name, 'id' => $id);
 
         $response->setData($arr);
 
@@ -70,8 +71,9 @@ class FriendController extends Controller
         $email = $friend->getEmail();
 
         $name = $friend->getUsername();
+        $id = $friend->getId();
 
-        $arr = array('name' => $name);
+        $arr = array('name' => $name, 'id' => $id);
 
         $response->setData($arr);
 

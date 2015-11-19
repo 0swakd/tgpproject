@@ -6,6 +6,7 @@
 function new_friend_list(ev) {
     var elem = ev.detail;
     var name = elem.name;
+    var id = elem.id;
     var matrice = document.getElementById('fl_matrice');
     var nplace = matrice.cloneNode(true);
     var spans = nplace.getElementsByTagName('span');
@@ -73,14 +74,8 @@ function seek_friend_action() {
     xmlhttp.send();
 }
 
-function insert_friend(name) {
-    var matrice = document.getElementById('fl_matrice');
-    
-    var nfriend = matrice.cloneNode(true);
-    nfriend.id = "li_" + name;
-    nfriend.getElementsByTagName('span')[0].innerHTML = name;
-    matrice.parentNode.appendChild(nfriend);
-    show(nfriend);
+function insert_friend(friend) {
+    friends.add(friend.id, friend);
 }
 
 
@@ -120,8 +115,8 @@ xmlhttpfl.onreadystatechange = function() {
     hide(matrice);
 
     for (var e in jsonResponse) {
-        insert_friend(jsonResponse[e].name);
-        update_friends_place_list(e, jsonResponse[e].name);
+        insert_friend(jsonResponse[e]);
+        update_friends_place_list(e, jsonResponse[e]);
     }
 
     hide(document.getElementById('fl_running'));
@@ -159,9 +154,11 @@ xmlhttprf.onreadystatechange = function() {
         return;
     }
 
-    var elem = document.getElementById('li_' + jsonResponse.name);
+    remove_friend(jsonResponse.id);
+}
 
-    elem.parentNode.removeChild(elem);
+function remove_friend(id) {
+    friends.remove(id);
 }
 
 function send_rem_friend(friend) {
@@ -213,7 +210,7 @@ xmlhttpaf.onreadystatechange = function() {
         return;
     }
 
-    insert_friend(jsonResponse.name);
+    insert_friend(jsonResponse);
 }
 
 function send_add_friend(friend) {
@@ -288,9 +285,12 @@ function update_friends_place_list(id, name, prio) {
         placefriendqueue = new Queue();
     }
 
+    console.log("TEST 1");
     if (prio == true) {
+    console.log("TEST 2");
         placefriendqueue.addFirst(queue_friend_place, {method:"GET", query:"place/friend/" + id + "/" + name});
     } else {
+    console.log("TEST 3");
         placefriendqueue.add(queue_friend_place, {method:"GET", query:"place/friend/" + id + "/" + name});
     }
 }
