@@ -27,3 +27,4 @@ function initList() {
     addevent(seekplaces.listener, "listdel", old_seek_place_list);
 }
 
+
