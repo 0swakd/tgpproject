@@ -285,12 +285,9 @@ function update_friends_place_list(id, name, prio) {
         placefriendqueue = new Queue();
     }
 
-    console.log("TEST 1");
     if (prio == true) {
-    console.log("TEST 2");
         placefriendqueue.addFirst(queue_friend_place, {method:"GET", query:"place/friend/" + id + "/" + name});
     } else {
-    console.log("TEST 3");
         placefriendqueue.add(queue_friend_place, {method:"GET", query:"place/friend/" + id + "/" + name});
     }
 }
