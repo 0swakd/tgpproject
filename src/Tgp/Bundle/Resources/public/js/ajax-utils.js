@@ -67,7 +67,6 @@ function Queue() {
     this.run = run;
 
     function add(fct, params) {
-        console.log("Queue add");
         this.queue.push({fonction:fct, parametre:params});
         if (this.running == 0) {
             this.run();
@@ -75,19 +74,14 @@ function Queue() {
     }
 
     function addFirst(fct, params) {
-        console.log("Queue addfirst");
         this.queue.unshift({fonction:fct, parametre:params});
-        console.log("Queue addfirst 1");
         if (this.running == 0) {
-        console.log("Queue addfirst 2");
             this.run();
         }
     }
 
     function run() {
         var obj = this.queue.shift();
-        console.log("OBJ :");
-        console.log(obj);
         if (obj == undefined) {
             this.running = 0;
             return;
