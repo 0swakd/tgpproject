@@ -70,7 +70,6 @@ function seek_friend_action() {
     hide(document.getElementById('seek_error'));
     show(document.getElementById('seek_running'));
     xmlhttp.open("GET", "friend/search/" + seek, true);
-//    xmlhttp.open("GET", "lookforfriend/" + seek, true);
     xmlhttp.send();
 }
 
@@ -116,7 +115,6 @@ xmlhttpfl.onreadystatechange = function() {
 
     for (var e in jsonResponse) {
         insert_friend(jsonResponse[e]);
-        update_friends_place_list(e, jsonResponse[e]);
     }
 
     hide(document.getElementById('fl_running'));
@@ -255,6 +253,12 @@ function req_return_friends_place_list(jsonResponse) {
     for (var e in jsonResponse) {
         if (jsonResponse[e].places != null) { 
             friendsplaces.merge(jsonResponse[e].places);
+//            if (typeof friends.list[jsonResponse[e].id] == "object") {
+//                if (typeof friends.list[jsonResponse[e].id].places != "object") {
+//                    var listener = document.getElementById("friend_places_" + jsonResponse[e].id);
+//                    friends.list[jsonResponse[e].id].places = new List(listener);
+//                }
+//            }
         }
     }
 
