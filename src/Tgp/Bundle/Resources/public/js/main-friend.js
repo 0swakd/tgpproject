@@ -11,7 +11,7 @@ function new_friend_list(ev) {
     var nplace = matrice.cloneNode(true);
     var spans = nplace.getElementsByTagName('span');
     
-    nplace.id = "li_" + name;
+    nplace.id = "li_" + id;
     spans[0].innerHTML = name;
     matrice.parentNode.appendChild(nplace);
     show(nplace);
@@ -20,9 +20,9 @@ function new_friend_list(ev) {
 
 function old_friend_list(ev) {
     var elem = ev.detail;
-    var name = elem.name;
+    var id = elem.id;
 
-    var node = document.getElementById("li_" + name);
+    var node = document.getElementById("li_" + id);
     node.parentNode.removeChild(node);
 }
 
@@ -164,21 +164,23 @@ function send_rem_friend(friend) {
     xmlhttprf.send();
 }
 
-function del_friend(name) {
-    if (name == "") {
+function del_friend(id) {
+    if (id == "") {
         return;
     }
+
+    var name = friends.list[id].name;
 
     send_rem_friend(name);
 }
 
 function rem_friend(e) {
-    var name = "";
+    var id = "";
     var str = e.target.parentNode.parentNode.id;
 
-    name = str.substr(str.indexOf('_') + 1, str.length);
+    id = str.substr(str.indexOf('_') + 1, str.length);
 
-    del_friend(name)
+    del_friend(id)
 }
 
 
