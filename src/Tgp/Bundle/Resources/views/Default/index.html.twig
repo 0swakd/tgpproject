@@ -83,7 +83,7 @@
                 </li>
                 <li>
                     <p id="geoloc_title">Geolocalisation</p>
-                    <div id="geoloc_box">
+                    <div id="geoloc_b ox">
                     <p><a href="javascript:void(0)" onclick="allow_map_click()">[ Marquer un lieu en cliquant ]</a></p>
                     <p><a href="javascript:void(0)" onclick="map_center()">[ Centrer sur moi ]</a></p>
                     <p><a href="javascript:void(0)" onclick="map_follow()">[ Me suivre ]</a></p>
@@ -100,14 +100,14 @@
                             Error : <span id="fl_error_msg"></span>
                         </div>
                         <div id="fl_result" style="display:none">
-                            <ul id="flp_matrice">
-                                <li>
-                                </li>
-                            </ul>
                             <ul id="friend_list">
                                 <li id="fl_matrice" class="default_li">
                                     <p style="margin:0.3em"><a class="glyphicon glyphicon-remove-circle" aria-hidden="true" href="javascript:void(0);" onclick="rem_friend(event); return;"></a> <span>...</span></p>
                                     <p style="display:none;margin:0">Ses adresses</p>
+                                    <ul style="display_none">
+                                        <li style="display:none" class="default_li"><a class="glyphicon glyphicon-map-marker" aria-hidden="true" href="javascript:void(0);" onclick="center_place_click(event); return;"></a> <span>...</span>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                         </div>

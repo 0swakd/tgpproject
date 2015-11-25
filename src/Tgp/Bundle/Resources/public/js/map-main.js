@@ -181,6 +181,15 @@ function new_place_map(ev) {
     pin_place(name, lat, lng);
 }
 
+function old_place_map(ev) {
+    var elem = ev.detail;
+    var name = elem.name;
+    var lat = elem.lat;
+    var lng = elem.lng;
+    
+    removeLayer(pins[name + lat + lng]);
+}
+
 function new_friend_place_map(ev) {
     var elem = ev.detail;
     var name = elem.name;
@@ -188,6 +197,15 @@ function new_friend_place_map(ev) {
     var lng = elem.lng;
 
     pin_place(name, lat, lng, "friend");
+}
+
+function old_friend_place_map(ev) {
+    var elem = ev.detail;
+    var name = elem.name;
+    var lat = elem.lat;
+    var lng = elem.lng;
+    
+    removeLayer(pins[name + lat + lng]);
 }
 
 

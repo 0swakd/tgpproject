@@ -10,20 +10,33 @@ function new_friend_list(ev) {
     var matrice = document.getElementById('fl_matrice');
     var nplace = matrice.cloneNode(true);
     var spans = nplace.getElementsByTagName('span');
-    
+    var uls = nplace.getElementsByTagName('ul');
+    var friendplacelistenner = uls[0];
+
     nplace.id = "li_" + id;
     spans[0].innerHTML = name;
     matrice.parentNode.appendChild(nplace);
     show(nplace);
+
+    friendplacelistenner.id = "friend_places_" + id;
+    friends.list[id].places = new List(friendplacelistenner);
+
+    addevent(friends.list[id].places.listener, "listadd", new_friend_place_map);
+    addevent(friends.list[id].places.listener, "listdel", old_place_map);
+
     update_friends_place_list(id, name, true);
 }
 
 function old_friend_list(ev) {
     var elem = ev.detail;
     var id = elem.id;
+    var places = elem.places;
 
     var node = document.getElementById("li_" + id);
     node.parentNode.removeChild(node);
+    for (var e in places.list) {
+        places.remove(e);
+    }
 }
 
 
@@ -254,13 +267,11 @@ function req_return_friends_place_list(jsonResponse) {
 
     for (var e in jsonResponse) {
         if (jsonResponse[e].places != null) { 
-            friendsplaces.merge(jsonResponse[e].places);
-//            if (typeof friends.list[jsonResponse[e].id] == "object") {
-//                if (typeof friends.list[jsonResponse[e].id].places != "object") {
-//                    var listener = document.getElementById("friend_places_" + jsonResponse[e].id);
-//                    friends.list[jsonResponse[e].id].places = new List(listener);
-//                }
-//            }
+            for (var v in jsonResponse[e].places) {
+                if (typeof friends.list[jsonResponse[e].id] == "object") {
+                    friends.list[jsonResponse[e].id].places.add(v, jsonResponse[e].places[v]);
+                }
+            }
         }
     }
 
