@@ -32,7 +32,8 @@ class GetFriendPlaceListController extends Controller
             foreach($places as $key => $place) {
                 $tmp[$place->getId()] = array("name" => $place->getName(),
                                                 "lat" => $place->getLatitude(),
-                                                "lng" => $place->getLongitude()
+                                                "lng" => $place->getLongitude(),
+                                                "contactid" => $friend->getId()
                                             );
             }
 

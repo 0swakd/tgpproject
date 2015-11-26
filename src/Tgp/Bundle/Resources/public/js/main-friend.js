@@ -23,6 +23,9 @@ function new_friend_list(ev) {
 
     addevent(friends.list[id].places.listener, "listadd", new_friend_place_map);
     addevent(friends.list[id].places.listener, "listdel", old_place_map);
+    addevent(friends.list[id].places.listener, "listadd", new_friend_place_menu);
+//    addevent(friends.list[id].places.listener, "listdel", old_place_menu);
+
 
     update_friends_place_list(id, name, true);
 }
@@ -39,6 +42,29 @@ function old_friend_list(ev) {
     }
 }
 
+function new_friend_place_menu(ev) {
+    var elem = ev.detail;
+    var name = elem.name;
+    var lat = elem.lat;
+    var lng = elem.lng;
+    var id = elem.contactid;
+    var ul = document.getElementById('friend_places_' + id);
+    var lis = ul.getElementsByTagName('li');
+    var li = lis[0].cloneNode(true);
+    var spans = li.getElementsByTagName('span');
+
+    spans[0].innerHTML = name;
+    spans[1].innerHTML = lat;
+    spans[2].innerHTML = lng;
+    ul.appendChild(li);
+    show(li);
+}
+
+function old_friend_place_menu(ev) {
+    var elem = ev.detail;
+    var id = elem.id;
+    
+}
 
 /*========== GET SEEK FRIEND =============*/
 

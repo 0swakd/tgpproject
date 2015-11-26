@@ -16,6 +16,9 @@ li {
     list-style-type: none;
 }
 
+.fpl_li {
+    margin-left:1em;
+}
 
 
 /* --- Header --- */
