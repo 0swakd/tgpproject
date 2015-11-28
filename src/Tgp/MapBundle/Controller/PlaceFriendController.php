@@ -7,9 +7,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use FOS\UserBundle\Model\UserInterface;
 use Tgp\MapBundle\Entity\Place;
 
-class GetFriendPlaceListController extends Controller 
+class PlaceFriendController extends Controller 
 {
-    public function getAction($id, $name) 
+    public function listAction($id, $name) 
     {
         $response = new JsonResponse();
 

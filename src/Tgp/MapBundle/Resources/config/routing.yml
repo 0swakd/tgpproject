@@ -21,16 +21,16 @@ map_place_search:
     defaults: { _controller: TgpMapBundle:Place:search }
     requirements:
         _method:    GET
-
-#get_friends_places:
-#    path:     /getfriendsplacelist
-#    defaults: { _controller: TgpMapBundle:GetFriendsPlaceList:get }
-#    requirements:
-#        _method:    GET
-
-get_friend_places:
+            #
+            #get_friend_places:
+            #    path:     /place/friend/{id}/{name}
+            #    defaults: { _controller: TgpMapBundle:GetFriendPlaceList:get }
+            #    requirements:
+            #        _method:    GET
+            #
+friend_places_list:
     path:     /place/friend/{id}/{name}
-    defaults: { _controller: TgpMapBundle:GetFriendPlaceList:get }
+    defaults: { _controller: TgpMapBundle:PlaceFriend:list }
     requirements:
         _method:    GET
 
