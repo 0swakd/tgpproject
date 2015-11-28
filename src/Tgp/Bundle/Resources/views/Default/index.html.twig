@@ -2,7 +2,7 @@
 
 {% block title %}TheGoodPlan - Les bons plans, c'est ici{% endblock %}
 
-{% block metadescription %}TheGoodPlan, partagez vos bons plans entre amis.{% endblock %}
+{% block metadescription %}The Good Plan, créez vos cartes, partagez entre vous, découvrez entre vous.{% endblock %}
 
 {% block meta %}
     {{parent()}}
@@ -36,7 +36,7 @@
 <!--            <p id="menu_title"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>Menu</p>-->
             <ul id="menu_list">
                 <li>
-                    <p id="seek_place_title">Recherche Adresse</p>
+                    <p id="seek_place_title" class="menu_title">Recherche Adresse</p>
                     <div id="seek_place_box" class="content_li">
                         <form id="seek_place" onsubmit="seek_place_action(); return false;" name="seek_place_form">
                             <input id="seek_place_input" type="text" value="" class="form_text" autocomplete="off" placeholder="Adresse"/>
@@ -61,7 +61,7 @@
                     </div>
                 </li>
                 <li>
-                    <p id="seek_title">Recherche Contact</p>
+                    <p id="seek_title" class="menu_title">Recherche Contact</p>
                     <div id="seek_box" class="content_li">
                         <form id="seek_friend" onsubmit="seek_friend_action(); return false;" name="friend_form">
                             <input id="seek_friend_input" type="text" value="" class="form_text" autocomplete="off" placeholder="Nom ou Mail"/>
@@ -82,8 +82,8 @@
                     </div>
                 </li>
                 <li>
-                    <p id="geoloc_title">Geolocalisation</p>
-                    <div id="geoloc_b ox">
+                    <p id="geoloc_title" class="menu_title">Geolocalisation</p>
+                    <div id="geoloc_box">
                     <p><a href="javascript:void(0)" onclick="allow_map_click()">[ Marquer un lieu en cliquant ]</a></p>
                     <p><a href="javascript:void(0)" onclick="map_center()">[ Centrer sur moi ]</a></p>
                     <p><a href="javascript:void(0)" onclick="map_follow()">[ Me suivre ]</a></p>
@@ -91,7 +91,7 @@
                     </div>
                 </li>
                <li>
-                    <p id="friends_title">Contacts</p>
+                    <p id="friends_title" class="menu_title">Contacts</p>
                     <div id="friends_list" class="content_li">
                        <div id="fl_running" style="display:none">
                             Request running
@@ -101,9 +101,8 @@
                         </div>
                         <div id="fl_result" style="display:none">
                             <ul id="friend_list">
-                                <li id="fl_matrice" class="default_li">
+                                <li id="fl_matrice" class="default_li contacts_li">
                                     <p style="margin:0.3em"><a class="glyphicon glyphicon-remove-circle" aria-hidden="true" href="javascript:void(0);" onclick="rem_friend(event); return;"></a> <span>...</span></p>
-                                    <p style="display:none;margin:0">Ses adresses</p>
                                     <ul style="display_none">
                                         <li style="display:none" class="default_li fpl_li"><a class="glyphicon glyphicon-map-marker" aria-hidden="true" href="javascript:void(0);" onclick="center_place_click(event); return;"></a> <span>...</span><span style="display:none"></span><span style="display:none"></span>
                                         </li>
@@ -117,7 +116,7 @@
                     </div>
                 </li>
                 <li>
-                    <p id="places_title">Mes Adresses</p>
+                    <p id="places_title" class="menu_title">Mes Adresses</p>
                     <div id="places_list" class="content_li">
                         <div id="al_running" style="display:none">
                             Request running
